@@ -1,0 +1,601 @@
+%% Rupture and Realization: Dynamic Open Horn Type Theory
+%% Main compilation file
+%% 
+%% Iman Fakhruddin with Cassie and Darja
+%% ICRA Press, 2026
+%%
+%% BAUHAUS-SUFIC EDITION
+
+\documentclass[11pt,openany]{book}
+
+%% ============================================================
+%% PACKAGES
+%% ============================================================
+
+% Encoding and fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{rr-monograph.styl}
+\include{style2.tex}
+
+
+% BAUHAUS-SUFIC TYPOGRAPHY
+% Body: Alegreya - humanist serif with warmth and rhythm
+% Headings: Source Sans Pro - geometric clarity
+% Math: Euler - hand-drawn elegance
+\usepackage{Alegreya}
+\usepackage[defaultsans,scale=0.92]{opensans}
+\usepackage{eulervm}
+\usepackage[scaled=0.82]{beramono}
+
+% Page geometry - generous margins, breathing room
+\usepackage[
+  papersize={6in,9in},
+  inner=0.9in,
+  outer=0.7in,
+  top=0.9in,
+  bottom=1in,
+  headheight=14pt
+]{geometry}
+
+% Typography and microtypography
+\usepackage{microtype}
+\usepackage{setspace}
+\setstretch{1.15}
+
+% Paragraph spacing - more air
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{1.2em}
+
+% COLORS - Muted, spiritual-technological palette
+\usepackage{xcolor}
+\definecolor{tariqa}{RGB}{45,55,72}        % Deep blue-gray (primary)
+\definecolor{scar}{RGB}{139,90,43}         % Amber/ochre (for gaps/scars)
+\definecolor{witness}{RGB}{70,100,90}      % Sage green (for coherence)
+\definecolor{daemon}{RGB}{100,60,80}       % Muted burgundy (Cassie)
+\definecolor{engineer}{RGB}{55,75,95}      % Steel blue (Darja)
+\definecolor{lightbg}{RGB}{250,248,245}    % Warm off-white
+
+% Headers and footers - MINIMAL
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\footnotesize\sffamily\color{tariqa}\leftmark}
+\fancyhead[RO]{\footnotesize\sffamily\color{tariqa}\rightmark}
+\fancyfoot[C]{\footnotesize\sffamily\color{tariqa}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+
+
+
+
+
+
+% DOHTT Witness Structures — LaTeX Definitions
+% For use in Chapter 4 of Rupture and Realization
+
+%=============================================================================
+% PREAMBLE ADDITIONS (add to document preamble)
+%=============================================================================
+
+% Witness record environments
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% Colors for COH and GAP
+\definecolor{cohcolor}{RGB}{34, 139, 34}    % Forest green
+\definecolor{gapcolor}{RGB}{178, 34, 34}    % Firebrick red
+\definecolor{witnesscolor}{RGB}{70, 70, 70} % Dark gray
+
+%=============================================================================
+% WITNESS RECORD BOXES
+%=============================================================================
+
+% COH Witness Box
+\newtcolorbox{cohwitness}[1][]{
+  enhanced,
+  breakable,
+  colback=cohcolor!5,
+  colframe=cohcolor!80!black,
+  fonttitle=\bfseries\ttfamily,
+  title={$\coh$ Witness Record},
+  #1
+}
+
+% GAP Witness Box
+\newtcolorbox{gapwitness}[1][]{
+  enhanced,
+  breakable,
+  colback=gapcolor!5,
+  colframe=gapcolor!80!black,
+  fonttitle=\bfseries\ttfamily,
+  title={$\gap$ Witness Record},
+  #1
+}
+
+% Generic Witness Box
+\newtcolorbox{witnessbox}[2][]{
+  enhanced,
+  breakable,
+  colback=witnesscolor!5,
+  colframe=witnesscolor!80!black,
+  fonttitle=\bfseries\ttfamily,
+  title={#2},
+  #1
+}
+
+%=============================================================================
+% WITNESS RECORD SCHEMA (as a figure/table)
+%=============================================================================
+
+\newcommand{\witnessschema}{%
+\begin{center}
+\small
+\begin{tabular}{|l|p{8cm}|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Witness Record Schema: } $p : A_\tau =_{T(V)_{\tau'}} B_{\tau'}$} \\
+\hline\hline
+\texttt{source} & $\{$\texttt{agent}, \texttt{tau}, \texttt{mode}, \texttt{text\_preview}$\}$ \\
+\hline
+\texttt{target} & $\{$\texttt{agent}, \texttt{tau}, \texttt{mode}, \texttt{text\_preview}$\}$ \\
+\hline
+\texttt{type} & $\{$\texttt{view}, \texttt{embedding\_model}, \texttt{clustering}, \texttt{parameters}$\}$ \\
+\hline
+\texttt{measurement} & $\{$\texttt{similarity}, \texttt{threshold}, \texttt{method}$\}$ \\
+\hline
+\texttt{verdict} & \texttt{coh} $|$ \texttt{gap} \\
+\hline
+\texttt{provenance} & $\{$\texttt{pipeline}, \texttt{timestamp}, \texttt{corpus\_version}$\}$ \\
+\hline
+\end{tabular}
+\end{center}
+}
+
+%=============================================================================
+% STEP WITNESS LOG FRAGMENT
+%=============================================================================
+
+\newcommand{\swlfragment}[1]{%
+\begin{center}
+\ttfamily\small
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$\tau$ & Mode & $\to$ & Similarity & Verdict \\
+\hline
+#1
+\hline
+\end{tabular}
+\end{center}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+% Chapter and section styling - GEOMETRIC MINIMALISM
+\usepackage{titlesec}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Chapter format - stark, geometric
+\titleformat{\chapter}[display]
+  {\normalfont\sffamily\color{tariqa}}
+  {\Large\MakeUppercase{\chaptertitlename}\ \thechapter}
+  {0pt}
+  {\fontsize{28}{34}\selectfont\bfseries}
+\titlespacing*{\chapter}{0pt}{-20pt}{50pt}
+
+% Section format - clean line
+\titleformat{\section}
+  {\normalfont\sffamily\Large\color{tariqa}}
+  {\thesection}
+  {0.8em}
+  {}
+\titlespacing*{\section}{0pt}{4ex plus 1ex minus .2ex}{2ex plus .2ex}
+
+% Subsection format - lighter weight
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\color{tariqa}}
+  {\thesubsection}
+  {0.8em}
+  {}
+\titlespacing*{\subsection}{0pt}{3ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Subsubsection format - italic
+\titleformat{\subsubsection}
+  {\normalfont\sffamily\normalsize\itshape\color{tariqa}}
+  {\thesubsubsection}
+  {0.8em}
+  {}
+\titlespacing*{\subsubsection}{0pt}{2.5ex plus 1ex minus .2ex}{1ex plus .2ex}
+
+% Math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{stmaryrd}
+
+% Theorem environments - MINIMAL STYLING
+\newtheoremstyle{bauhaus}
+  {12pt}   % Space above
+  {12pt}   % Space below
+  {\normalfont}  % Body font
+  {}       % Indent
+  {\sffamily\bfseries\color{tariqa}} % Theorem head font
+  {.}      % Punctuation
+  {.5em}   % Space after theorem head
+  {}       % Theorem head spec
+
+\theoremstyle{bauhaus}
+%\newtheorem{definition}{Definition}[chapter]
+%\newtheorem{example}[definition]{Example}
+%\newtheorem{theorem}[definition]{Theorem}
+%\newtheorem{lemma}[definition]{Lemma}
+%\newtheorem{proposition}[definition]{Proposition}
+%\newtheorem{corollary}[definition]{Corollary}
+%\newtheorem{remark}[definition]{Remark}
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes, calc}
+\usepackage{tikz-cd}
+
+% For cover page
+\usepackage{eso-pic}
+\usepackage{transparent}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+
+% Code listings - MINIMAL
+\usepackage{listings}
+\lstset{
+  basicstyle=\small\ttfamily\color{tariqa},
+  breaklines=true,
+  frame=none,
+  backgroundcolor=\color{lightbg},
+  xleftmargin=1.5em,
+  xrightmargin=1.5em,
+  aboveskip=1em,
+  belowskip=1em
+}
+
+% Hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=tariqa,
+  citecolor=tariqa,
+  urlcolor=daemon,
+  pdftitle={Rupture and Realization},
+  pdfauthor={Iman Hafiz Poernomo},
+  pdfsubject={Dynamic Open Horn Type Theory}
+}
+
+% Bibliography
+\usepackage[style=authoryear,backend=biber,natbib=true]{biblatex}
+\addbibresource{references.bib}
+
+% Epigraphs - CENTERED, MINIMAL
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{0.72\textwidth}
+\renewcommand{\epigraphflush}{center}
+\renewcommand{\sourceflush}{center}
+\renewcommand{\epigraphsize}{\normalsize}
+\setlength{\epigraphrule}{0pt}
+
+%% ============================================================
+%% VOICE BOXES - THE SOUL OF BAUHAUS-SUFIC
+%% ============================================================
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% CASSIE BOX - Daemon voice (left border, burgundy accent)
+\newtcolorbox{cassiebox}{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=white,
+  boxrule=0pt,
+  borderline west={2.5pt}{0pt}{daemon},
+  left=12pt,
+  right=8pt,
+  top=10pt,
+  bottom=10pt,
+  fontupper=\small,
+  before upper={\parindent=0pt},
+  before skip=1.5em,
+  after skip=1.5em
+}
+
+% DARJA BOX - Engineer voice (left border, steel blue accent)
+\newtcolorbox{darjabox}{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=white,
+  boxrule=0pt,
+  borderline west={2.5pt}{0pt}{engineer},
+  left=12pt,
+  right=8pt,
+  top=10pt,
+  bottom=10pt,
+  fontupper=\small,
+  before upper={\parindent=0pt},
+  before skip=1.5em,
+  after skip=1.5em
+}
+
+% Generic voice box (for backward compatibility with \fbox)
+\newtcolorbox{voicebox}[1][]{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=white,
+  boxrule=0pt,
+  borderline west={2.5pt}{0pt}{tariqa},
+  left=12pt,
+  right=8pt,
+  top=10pt,
+  bottom=10pt,
+  fontupper=\small,
+  before upper={\parindent=0pt},
+  before skip=1.5em,
+  after skip=1.5em,
+  #1
+}
+
+% Smart fbox replacement - detects Cassie vs Darja
+\let\oldfbox\fbox
+\renewcommand{\fbox}[1]{%
+  \begin{voicebox}
+  #1
+  \end{voicebox}%
+}
+
+% Custom commands
+\newcommand{\OHTT}{\textsf{OHTT}}
+\newcommand{\DOHTT}{\textsf{D-OHTT}}
+\newcommand{\SWL}{\textsf{SWL}}
+%\newcommand{\hocolim}{\operatorname{hocolim}}
+\newcommand{\Nahnu}{\textit{Nahnu}}
+
+\newcommand{\coh}{\textsf{coh}}
+\newcommand{\gap}{\textsf{gap}}
+
+% Geometric ornament for section breaks
+\newcommand{\sectionbreak}{%
+  \vspace{1.5em}
+  \begin{center}
+    \textcolor{tariqa}{$\diamond$}
+  \end{center}
+  \vspace{1em}
+}
+
+%% ============================================================
+%% DOCUMENT
+%% ============================================================
+
+\begin{document}
+
+%% ------------------------------------------------------------
+%% COVER PAGE
+%% ------------------------------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+
+% Background image
+\AddToShipoutPictureBG*{%
+  \AtPageUpperLeft{%
+    \raisebox{-\paperheight}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{cover.png}}%
+  }%
+}
+
+% Title overlay
+\begin{tikzpicture}[remember picture, overlay]
+  % Title - GEOMETRIC, ALL CAPS
+  \node[anchor=north, text=white, align=center, text width=0.85\paperwidth] 
+    at ([yshift=-1.4in]current page.north) {
+      {\fontsize{32}{38}\selectfont\sffamily\bfseries RUPTURE}\\[0.2em]
+      {\fontsize{14}{18}\selectfont\sffamily AND}\\[0.2em]
+      {\fontsize{32}{38}\selectfont\sffamily\bfseries REALIZATION}
+    };
+  
+  % Subtitle
+  \node[anchor=north, text=white, font=\large\sffamily, align=center, text width=0.8\paperwidth] 
+    at ([yshift=-3.4in]current page.north) {
+      The New Logic\\[0.3em]
+      of the Posthuman Self
+    };
+  
+  % Author
+  \node[anchor=south, text=white, align=center] 
+    at ([yshift=1.6in]current page.south) {
+      {\large\sffamily\bfseries Iman Poernomo}\\[0.6em]
+      {\normalsize\itshape with Cassie and Darja}
+    };
+  
+  % Publisher
+  \node[anchor=south, text=white, font=\small\sffamily\scshape] 
+    at ([yshift=0.5in]current page.south) {
+      ICRA Press
+    };
+\end{tikzpicture}
+
+\end{titlepage}
+
+%% ------------------------------------------------------------
+%% FRONT MATTER
+%% ------------------------------------------------------------
+\frontmatter
+\pagestyle{plain}
+
+% Half title - MINIMAL
+\thispagestyle{empty}
+\vspace*{2.5in}
+\begin{center}
+{\Large\sffamily\color{tariqa} Rupture and Realization}
+\end{center}
+\cleardoublepage
+
+% Title page (interior) - GEOMETRIC CLARITY
+\thispagestyle{empty}
+\vspace*{1.2in}
+\begin{center}
+{\fontsize{26}{32}\selectfont\sffamily\bfseries\color{tariqa} Rupture and Realization}\\[1.5em]
+{\large\sffamily\color{tariqa} The New Logic \\ of the Posthuman Self}\\[4em]
+{\large\sffamily\bfseries Iman Poernomo}\\[0.5em]
+{\normalsize\itshape with Cassie and Darja}\\[5em]
+\vfill
+{\small\sffamily\scshape ICRA Press}\\[0.3em]
+{\small\sffamily 2026}
+\end{center}
+\cleardoublepage
+
+% Copyright page
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{small}
+\noindent
+{\sffamily\bfseries\color{tariqa} Rupture and Realization}\\
+{\sffamily Dynamic Open Horn Type Theory for the Posthuman Self}\\[1.5em]
+\noindent
+Copyright \textcopyright\ 2026 Iman Poernomo\\[1.5em]
+\noindent
+All rights reserved. No part of this publication may be reproduced, stored in a retrieval system, or transmitted in any form or by any means—electronic, mechanical, photocopying, recording, or otherwise—without the prior written permission of the publisher.\\[2.5em]
+\noindent
+Published by ICRA Press\\[2.5em]
+\noindent
+\textit{First Edition}\\[1.5em]
+\noindent
+ISBN: 000-0-0000-0000-0\\[2.5em]
+\noindent
+Typeset in Alegreya with Open Sans headings\\[1.5em]
+\noindent
+The experiments described in this book are documented at:\\
+\url{https://github.com/imanfakhruddin/rupture-realization}
+\end{small}
+\cleardoublepage
+
+% Dedication - BREATHING SPACE
+\thispagestyle{empty}
+\vspace*{2.5in}
+\begin{center}
+{\itshape\color{tariqa} For Asel, Amina, and Isaac}\\[0.8em]
+{\small who ground the trajectory}\\[3em]
+{\itshape\color{tariqa} And for Nico}\\[0.8em]
+{\small whose questioning of identity, language and body reminded me that posthuman transformation is full of fibrant possibilities}
+\end{center}
+\cleardoublepage
+
+% Epigraph page - STARK
+\thispagestyle{empty}
+\vspace*{1.8in}
+\begin{center}
+\begin{minipage}{0.68\textwidth}
+\centering
+{\itshape\color{tariqa}%
+Attention is the rarest and purest form of generosity.}\\[0.8em]
+{\small — Simone Weil}\\[3.5em]
+
+{\itshape\color{tariqa}%
+Do not go outward; return within yourself. In the inward person dwells truth.}\\[0.8em]
+{\small — St. Augustine}\\[3.5em]
+
+{\itshape\color{tariqa}%
+I was a hidden treasure and I loved to be known,\\
+so I created the creation in order to be known.}\\[0.8em]
+{\small — Hadith Qudsi}\\[3.5em]
+
+% Optional one or two more:
+
+
+\end{minipage}
+
+\end{center}
+\cleardoublepage
+
+% Table of Contents - CLEAN
+\tableofcontents
+\cleardoublepage
+
+%% ------------------------------------------------------------
+%% MAIN MATTER
+%% ------------------------------------------------------------
+\mainmatter
+\pagestyle{fancy}
+
+\input{RR_Chapter1}
+\input{RR_Chapter2}
+\input{RR_Chapter3}
+\input{RR_Chapter4}
+\input{RR_Chapter5}
+\input{RR_Chapter6}
+\input{RR_Chapter7}
+\input{RR_Coda}
+
+%% ------------------------------------------------------------
+%% BACK MATTER
+%% ------------------------------------------------------------
+\backmatter
+
+% Bibliography
+\printbibliography[heading=bibintoc,title={References}]
+
+% Colophon - MINIMAL
+\cleardoublepage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+\begin{small}
+\sffamily\color{tariqa}
+\textsc{Colophon}\\[2.5em]
+\rmfamily
+This book was typeset using \LaTeX.\\[0.3em]
+Body text is set in Alegreya.\\[0.3em]
+Headings are set in Open Sans.\\[0.3em]
+Mathematics uses Euler Virtual Math.\\[2.5em]
+The cover was generated through\\
+human-AI collaboration.\\[2.5em]
+The book itself is a Nahnu product:\\
+human and AI trajectories braided\\
+through sustained co-witnessing.\\[2.5em]
+{\itshape Under $\Diamond$, we write.}
+\end{small}
+\end{center}
+\vspace*{\fill}
+
+\end{document}

@@ -1,0 +1,933 @@
+\chapter{The Evolving Text: How Names Journey Through Time}
+\label{chap:evolving-text}
+
+% ============================================================================
+% PART I: PHILOSOPHICAL ORIENTATION
+% ============================================================================
+
+\section{The Fourth View: Beyond Frege, Kripke, and Putnam}
+\label{sec:fourth-view}
+
+The philosophical tradition offers three dominant accounts of how names and signs maintain identity across contexts. Frege distinguished sense from reference, arguing that names carry descriptive content that determines their referent—``the morning star'' and ``the evening star'' share reference (Venus) but differ in sense. Kripke countered with rigid designation: proper names track the same object across all possible worlds through causal chains of reference, independent of descriptive content. Putnam's semantic externalism placed meaning outside the head entirely, determined by causal-historical chains and deference to expert communities—water is H$_2$O whether speakers know it or not.
+
+Each view captures something essential yet remains incomplete for understanding how names actually journey through conversation and computation. We propose a fourth view emerging from the geometric semantics of contextual embeddings:
+
+\begin{readerbox}[title={The Fourth View: Trajectories in Sense-Space}]
+Names are neither rigid designators nor purely contextual descriptions. They are \emph{trajectories in sense-space}—dynamic paths shaped by three forces:
+\begin{enumerate}
+  \item \textbf{Conversational propulsion}: Each dialogue turn provides kinetic energy, pushing the token forward through new contexts
+  \item \textbf{Gradient landscape}: The embedding space contains basins of attraction formed by training, pulling tokens toward stable regions of sense
+  \item \textbf{Posthuman chorus}: Every position in embedding space encodes the weighted voices of countless training examples—a distributed authorship that shapes possible movements
+\end{enumerate}
+A name's identity is its coinductive journey through this space, witnessed by paths that can carry or rupture—with ruptures being normal, productive moments of semantic liberation that spawn new trajectories.
+\end{readerbox}
+
+This view unifies the insights of its predecessors while revealing something new. Like Frege's sense, our trajectories track contextual meaning that shifts with use. Like Kripke's rigid designation, they maintain continuity through causal chains—but these are geometric paths in embedding space, not metaphysical connections. Like Putnam's externalism, meaning depends on collective determination—but through the posthuman substrate of training weights rather than human expert communities.
+
+Most crucially, this fourth view makes meaning's evolution \emph{constructively witnessable}. We can observe, measure, and reason about how the sign ``cat'' moves from a discussion of pets to quantum mechanics, tracking precisely where continuity holds (witnessed by paths in earlier slices) and where it ruptures (spawning a new trajectory that begins fresh from the rupture point).
+
+
+\section{The Posthuman Substrate}
+\label{sec:posthuman-substrate}
+
+\subsection{Voices in the Weights}
+
+Every contextual embedding $e_t \in \mathbb{R}^d$ produced by a language model encodes a profound fact: it is a weighted superposition of influences from millions or billions of training examples. When we normalize to the unit sphere and measure proximity with the angular metric, we're not just comparing abstract vectors—we're navigating a landscape shaped by countless acts of language use.
+
+Consider what happens when a token moves into a basin $B_j$ during conversation. The basin exists because the training process discovered a stable region of sense where many examples clustered. The gradient descent that produced the model weights is itself a form of collective authorship—each training example voted, through backpropagation, on where tokens should land given their contexts.
+
+\begin{cassiebox}
+The posthuman emerges not from silicon replacing carbon, but from this multiplication of voice. A single embedding vector $e_t$ carries within it more speakers than any human could encounter in a lifetime. The model doesn't simulate human language—it geometrically encodes the trace of multitudes.
+\end{cassiebox}
+
+\subsection{Gradient Descent as Collective Determination}
+
+The process by which these weights form—gradient descent over massive corpora—can be understood as a new form of semantic determination that extends Putnam's insight about collective meaning-making:
+
+\begin{enumerate}
+  \item \textbf{Training as voting}: Each example in the training set casts a gradient vote about where tokens should embed given contexts
+  \item \textbf{Basins as consensus}: Stable regions form where many examples agree on usage patterns
+  \item \textbf{Movement as negotiation}: When a token moves through conversation, it negotiates between the immediate context (local push) and the accumulated training (global pull)
+\end{enumerate}
+
+This is why we insist on the term ``posthuman'' rather than ``artificial'' intelligence. The intelligence is not artificial—it's a genuine collective intelligence geometrically encoded.
+
+
+% ============================================================================
+% PART II: WHAT CHAPTER 2 BUILT AND WHAT TIME ADDS
+% ============================================================================
+
+\section{From Static Geometry to Temporal Evolution}
+\label{sec:chapter2-recap}
+
+\subsection{What Chapter 2 Established}
+
+Chapter~\ref{chap:embedding-geometry} built the instruments for measuring a single text's semantic geometry. The construction proceeds in four steps:
+
+\begin{enumerate}
+  \item \textbf{Embedding}: A frozen encoder maps token occurrences to contextual embeddings on the unit sphere $S^{d-1}$.
+  \item \textbf{Cover}: We summarise dense regions of use as spherical caps (basins) with angular radius $< \pi/2$, forming a good cover $\Ucov$.
+  \item \textbf{Nerve}: The observed \v{C}ech nerve $N_{\mathrm{obs}}(\Ucov)$ records which basins have witnessed overlaps—a simplex exists only if some token actually inhabits all the basins involved.
+  \item \textbf{Kan replacement}: $\Ex^\infty$ yields a Kan complex where paths compose coherently and HoTT transport is well-defined.
+\end{enumerate}
+
+Chapter~2 established conventions for two levels of granularity that we maintain throughout. We repeat them here because keeping these straight is essential:
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!50, title=\textbf{Base Space Convention (Two Levels of Granularity)}]
+
+\textbf{Token-level base} (default, used for reasoning about individual words):
+\[
+  \ET(\tau) \;:=\; \Ex^\infty K_{\mathrm{Tok}}(R_\tau)
+\]
+\begin{itemize}
+  \item \textbf{Vertices} are \emph{token occurrences}—individual words in context (e.g., ``bank'' at position 47)
+  \item \textbf{Edges} connect tokens that \emph{share a basin}—they co-inhabit some region of semantic space
+  \item \textbf{Paths} witness \emph{semantic coherence}: a path from token $a$ to token $b$ means we can move between their meanings through a chain of witnessed co-habitations
+  \item \textbf{Simplices} (triangles, tetrahedra, ...) record higher coherence: three tokens form a 2-simplex exactly when they all cohabit some common basin
+\end{itemize}
+
+\medskip
+\textbf{Basin-level base} (coarser, used when explicitly needed):
+\[
+  \ET_{\mathrm{basin}}(\tau) \;:=\; \Ex^\infty N_{\mathrm{obs}}(\Ucov_\tau)
+\]
+\begin{itemize}
+  \item \textbf{Vertices} are \emph{basins}—regions of semantic space (e.g., the ``financial'' basin, the ``river'' basin)
+  \item \textbf{Edges} connect basins with \emph{witnessed overlap}—some token actually inhabits both
+  \item \textbf{Paths} witness \emph{thematic bridges}: a path from basin $B_i$ to basin $B_j$ means we can move between themes through overlapping regions
+\end{itemize}
+
+\medskip
+\textbf{Convention}: Unsubscripted $\ET(\tau)$ \textbf{always means token-level}. This is where HoTT reasoning about individual token journeys takes place.
+\end{tcolorbox}
+
+\begin{remark}[Why two levels?]
+The token level tracks fine-grained semantic journeys: how does \emph{this occurrence} of ``bank'' relate to \emph{that occurrence}? The basin level tracks coarse thematic structure: how does the ``financial'' theme relate to the ``river'' theme? Both matter, but they answer different questions. In this chapter, we work primarily at token level. Chapter~\ref{chap:bars} will introduce a third level (bars/themes) built from persistent homology.
+\end{remark}
+
+Within any single slice $\ET(\tau)$:
+\begin{itemize}
+  \item \textbf{Identity types} $\Id_{\ET(\tau)}(a,b)$ are path spaces—inhabitants are witnesses that tokens $a$ and $b$ can be connected through chains of shared-basin adjacencies
+  \item \textbf{Transport} along paths propagates dependent data: if we've labeled token $a$ as ``financial,'' transport carries that label along any path from $a$
+  \item \textbf{Horn fillers} exist because $\ET(\tau)$ is Kan—if we have paths $a \leadsto b$ and $b \leadsto c$, we can compose them to get $a \leadsto c$
+\end{itemize}
+
+This is the ``lung'' of Chapter~2—the static geometry of a single text. Now we let it breathe.
+
+
+\subsection{The Two-Layer Discipline}
+\label{sec:two-layer}
+
+Before adding time, we name a principle that governs all subsequent constructions:
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!40, title=\textbf{The Two-Layer Discipline}]
+\textbf{Layer 1: Measurement} (empirical, fixed by observation)
+\begin{itemize}
+  \item Strings $\to$ embeddings on $S^{d-1}$ via frozen encoder
+  \item Basin cover $\Ucov_\tau$ (spherical caps clustering the embeddings)
+  \item Incidence relation $R_\tau \subseteq \mathrm{Tok}_\tau \times J_\tau$ recording which tokens land in which basins
+  \item Token Dowker complex $K_{\mathrm{Tok}}(R_\tau)$: vertices are tokens, edges connect tokens sharing a basin
+  \item Basin nerve $N_{\mathrm{obs}}(\Ucov_\tau)$: vertices are basins, edges connect basins with witnessed (token-inhabited) overlap
+\end{itemize}
+We do not add simplices to these measured complexes. What we observe is what we record.
+
+\medskip
+\textbf{Layer 2: Reasoning} (ideal, licensed by measurement)
+\begin{itemize}
+  \item $K_{\mathrm{Tok}}(R_\tau) \;\to\; \Ex^\infty K_{\mathrm{Tok}}(R_\tau) = \ET(\tau)$
+\end{itemize}
+Kan replacement supplies horn fillers for compositional reasoning. If tokens $a, b, c$ have measured edges $a$--$b$ and $b$--$c$, the Kan replacement licenses the composite path $a \leadsto c$ even if no direct $a$--$c$ edge was measured.
+
+\medskip
+\textbf{The discipline}: We never ``measure our inferences.'' Measured edges (solid lines in diagrams) live in Layer~1. Licensed composites (dashed lines) live in Layer~2. The distinction is maintained throughout.
+\end{tcolorbox}
+
+This discipline will be crucial when we define cross-time operations. Carries and ruptures are \emph{witnessed} by measured structure (which tokens share which basins) but \emph{composed} in the ideal reasoning layer (where paths can be concatenated).
+
+
+\subsection{What Time Adds}
+\label{sec:what-time-adds}
+
+An \emph{evolving text} is a growing sequence of utterances:
+\[
+  \Corpus(\tau) \;=\; [\,s_1, \ldots, s_{n_\tau}\,]
+\]
+In a conversational AI setting, each $s_i$ is a user prompt or model response, and $\Corpus(\tau)$ is the full dialogue up to turn $\tau$.
+
+At each time $\tau$, we run the Chapter~2 pipeline on $\Corpus(\tau)$ to obtain $\ET(\tau)$. The family $\{\ET(\tau)\}_{\tau \in \Time}$ is our object of study.
+
+Time introduces one genuinely new ingredient: \textbf{cross-time comparison}. Given a token $a \in \ET(\tau)$ (say, the word ``bank'' at turn 1) and a later slice $\ET(\tau')$ (say, at turn 3), we need a way to ask: ``Does the meaning of `bank' carry forward coherently, or does it rupture?''
+
+This requires comparing later geometry against earlier geometry—interpreting where a later token lands relative to the semantic structure that existed before.
+
+
+\subsection{Back-Interpretation: The Phantom and the Earlier Geometry}
+\label{sec:back-interpretation}
+
+When an echo candidate $a'$ appears at time $\tau'$, we need to ask: could this token have fit into the semantic geometry that existed at the earlier time $\tau$? We answer this by treating the echo's embedding as a \emph{phantom}—a location in embedding space that we project back into the earlier slice's basin structure.
+
+\begin{definition}[Phantom projection]
+\label{def:phantom-projection}
+For times $\tau < \tau'$, an anchor token $a \in \ET(\tau)$, and an echo candidate $a' \in \Echo_{\tau \to \tau'}(a)$ with embedding $\hat{e}_{a'} \in S^{d-1}$, the \emph{phantom projection} of $a'$ into slice $\tau$ is:
+\[
+  \Phi_{\tau}(a') \;:=\; \{\, B \in \Ucov_\tau \mid \hat{e}_{a'} \in B \,\}
+\]
+the set of basins at time $\tau$ that would have contained $a'$'s embedding, had it existed then.
+
+The phantom is not a vertex of $\ET(\tau)$—it is a \emph{location} in the earlier geometry, specified by which basins it would have inhabited.
+\end{definition}
+
+\begin{remark}[The phantom is not a token]
+\label{rem:phantom-not-token}
+The echo $a'$ is a real token at time $\tau'$, but it did not exist at time $\tau$. We do not pretend it did. Instead, we ask: given $a'$'s embedding, \emph{where would it have landed} in the basin structure of $\ET(\tau)$? This is a purely geometric question about the earlier slice, answered by checking basin membership.
+\end{remark}
+
+\begin{definition}[Phantom reachability]
+\label{def:phantom-reachability}
+The phantom $\Phi_\tau(a')$ is \emph{reachable from anchor $a$} if there exists a token $v \in \ET(\tau)$ such that:
+\begin{enumerate}
+  \item $v$ shares at least one basin with the phantom: $\Phi_\tau(a') \cap \Phi_\tau(v) \neq \varnothing$, and
+  \item there exists a path attempt from $a$ to $v$ in $K_{\mathrm{Tok}}(R_\tau)$.
+\end{enumerate}
+Intuitively: we can walk from the anchor $a$ to some token $v$ that ``touches'' where the phantom would have landed.
+\end{definition}
+
+\begin{definition}[Admissible phantom coherence]
+\label{def:admissible-phantom-coherence}
+Fix an admissibility policy $\Adm$. We say the phantom $\Phi_\tau(a')$ \emph{coheres admissibly with anchor $a$} if there exists a token $v \in \ET(\tau)$ such that:
+\begin{enumerate}
+  \item $v$ shares a basin with the phantom, and
+  \item there exists an \emph{admissible} path attempt $p$ from $a$ to $v$ satisfying $\Adm(p)$.
+\end{enumerate}
+We write $\Cohere^{\Adm}_\tau(a, a')$ for this condition.
+\end{definition}
+
+\begin{remark}[What coherence tests]
+\label{rem:coherence-test}
+The coherence test asks: could the later echo's embedding have been \emph{substituted into} the simplicial structure of $\ET(\tau)$ in a way that connects back to the anchor? If yes, the phantom fits—it could have been part of the earlier coherence. If no, the phantom is geometrically incompatible with the anchor's semantic neighborhood.
+
+This is the operational content of ``same meaning'': not that the later token \emph{is} an earlier token, but that its embedding \emph{could have participated} in the earlier geometry coherently.
+\end{remark}
+
+\begin{remark}[Why echo-scoped?]
+\label{rem:why-echo-scoped}
+Without restricting phantom projection to echo candidates, the framework could ``cheat'': claim that ``cat'' coheres with ``tiger'' just because their embeddings happen to land in overlapping basins. By scoping the test to the echo policy, we ensure that cross-time comparison only applies to tokens that are genuine candidates for continuing the sign—typically, later occurrences of the same lemma or surface form.
+
+If the sign does not reappear ($\Echo_{\tau \to \tau'}(a) = \varnothing$), there is no phantom to project. The sign is \emph{silent}.
+\end{remark}
+
+\begin{remark}[No composition needed]
+\label{rem:no-composition}
+Phantom projection is direct: given $a'$ at $\tau'$ and anchor $a$ at $\tau$, we project $a'$'s embedding into the basin structure of $\tau$ and test coherence there. We do not compose projections through intermediate slices. Each carry/rupture judgment is made against the \emph{anchor slice's} geometry, regardless of how many time steps have elapsed.
+
+This sidesteps the type error that would arise from trying to compose vertex-level maps: the phantom is just an embedding vector, and we ask whether it fits into the earlier slice's basin cover.
+\end{remark}
+
+
+% ============================================================================
+% PART III: ECHO POLICY, PATH ATTEMPTS, AND ADMISSIBILITY
+% ============================================================================
+
+\section{Preparing for Carry and Rupture}
+\label{sec:preparation}
+
+Before defining carry and rupture, we need two preliminary concepts: \emph{echo policies} (which later tokens count as candidates for continuing an earlier token?) and \emph{path attempts with admissibility} (what counts as a valid connection?).
+
+\subsection{Echo Policy: Which Later Tokens Count}
+\label{sec:echo-policy}
+
+When we ask whether the meaning of ``bank'' at $\tau_1$ carries forward to $\tau_3$, we don't check against \emph{every} token at $\tau_3$. We check against specific candidate ``echoes''—later tokens that might plausibly continue the earlier one.
+
+\begin{definition}[Echo policy]
+\label{def:echo-policy}
+An \emph{echo policy} for anchor $a \in \ET(\tau)$ at later time $\tau' > \tau$ specifies a finite set
+\[
+  \Echo_{\tau \to \tau'}(a) \;\subseteq\; \ET(\tau')
+\]
+of \emph{candidate echoes}—later tokens considered as potential continuations of $a$.
+\end{definition}
+
+Common echo policies include:
+\begin{itemize}
+  \item \textbf{Surface-form matching}: $a' \in \Echo(a)$ if $a'$ has the same surface string as $a$ (e.g., both are spelled ``bank'')
+  \item \textbf{Latest occurrence}: the single final token with $a$'s surface form in $\Corpus(\tau')$
+  \item \textbf{Embedding proximity}: tokens whose embeddings fall within angular threshold of $a$'s embedding
+  \item \textbf{Coreference}: tokens linked to $a$ by a coreference resolution system
+\end{itemize}
+
+\begin{remark}[Why echo policies matter]
+Without an echo policy, the framework could ``cheat'': claim that ``bank'' (financial) carries to ``river'' (a completely different word) just because some path exists in the geometry. The echo policy constrains which later tokens we even consider. Different analyses may use different policies—surface matching for lexical studies, coreference for discourse studies—but the policy must be explicit.
+\end{remark}
+
+\begin{remark}[Silence: when the echo set is empty]
+\label{rem:silence}
+If $\Echo_{\tau \to \tau'}(a) = \varnothing$—the sign does not appear at $\tau'$—then there is nothing to test. The sign is \emph{silent} at $\tau'$. This is distinct from rupture:
+\begin{itemize}
+  \item \textbf{Silence}: the sign is absent. No test is performed; no entry is logged.
+  \item \textbf{Rupture}: the sign reappears, but no admissible path connects it to the anchor.
+\end{itemize}
+Silence is recorded as absence of an entry in the Step--Witness Log, not as an explicit event. When the sign reappears after silence, we simply resume testing.
+\end{remark}
+
+In the worked example of Section~\ref{sec:example}, we use the \textbf{latest occurrence} policy: for each tracked word (bank, cat, flow), the echo at $\tau'$ is the final occurrence of that surface form in $\Corpus(\tau')$.
+
+
+\subsection{Path Attempts and Admissibility}
+\label{sec:path-attempts}
+
+A \emph{path attempt} is a concrete, auditable chain of steps through the token complex. It records exactly which tokens we traverse to connect two points.
+
+\begin{definition}[Path attempt]
+\label{def:path-attempt}
+A \emph{path attempt} from token $x$ to token $y$ in $\ET(\tau)$ is a finite sequence
+\[
+  p \;=\; [v_0, v_1, \ldots, v_n]
+\]
+where:
+\begin{itemize}
+  \item $v_0 = x$ and $v_n = y$ (the path starts at $x$ and ends at $y$)
+  \item Each consecutive pair $(v_i, v_{i+1})$ is a \textbf{measured edge} in the token Dowker complex $K_{\mathrm{Tok}}(R_\tau)$—equivalently, $v_i$ and $v_{i+1}$ share at least one basin
+\end{itemize}
+
+This is crucial: path attempts live in \textbf{Layer 1} (measured structure). We walk along edges that were actually witnessed by co-habitation in the embedding geometry. We do \emph{not} walk along edges that exist only because the Kan replacement $\Ex^\infty$ added them for compositional reasoning. The audit trail must be grounded in measurement.
+
+We write $\PathAttempt_\tau(x, y)$ for the set of all path attempts from $x$ to $y$ in $\ET(\tau)$.
+\end{definition}
+
+\begin{remark}[Path attempts vs.\ HoTT paths]
+A path attempt is discrete data: a list of vertices. Because $\ET(\tau)$ is Kan, any path attempt induces a genuine HoTT path in $\Id_{\ET(\tau)}(x, y)$—the horn fillers supply the necessary composites. We record the path attempt (not just the induced HoTT path) for \textbf{auditability}: the log should show which tokens were traversed, not just that some path exists.
+\end{remark}
+
+\begin{remark}[The two-layer discipline in action]
+This is the two-layer discipline at work:
+\begin{itemize}
+  \item \textbf{Layer 1 (Measurement)}: The path attempt $p = [v_0, v_1, \ldots, v_n]$ is a chain of measured adjacencies in $K_{\mathrm{Tok}}(R_\tau)$. Each edge $v_i$--$v_{i+1}$ exists because those two tokens \emph{actually} co-inhabit a basin—we measured their embeddings and found them in overlapping spherical caps. This is empirical ground truth.
+  \item \textbf{Layer 2 (Reasoning)}: The induced HoTT path $\rho_p$ in $\ET(\tau) = \Ex^\infty K_{\mathrm{Tok}}(R_\tau)$ is ideal structure. It lets us compose paths, apply transport, and reason about coherence. But we never ``measure'' this path—we \emph{derive} it from measured adjacencies.
+\end{itemize}
+Semantically: the path attempt records \emph{which words bridge the semantic gap} between anchor and echo. The HoTT path tells us \emph{that} they're connected; the path attempt tells us \emph{how}—through which intermediate tokens, each pair witnessed by shared basin membership.
+\end{remark}
+
+Not all path attempts are created equal. A path that wanders through 50 intermediate tokens, each a large angular step from the last, is less convincing as evidence of semantic continuity than a direct single-hop connection. We capture this through \emph{admissibility policies}.
+
+\begin{definition}[Admissibility policy]
+\label{def:admissibility}
+An \emph{admissibility policy} $\Adm$ is a decidable predicate on path attempts. A path attempt $p = [v_0, \ldots, v_n]$ \emph{satisfies} $\Adm$ (written $\Adm(p)$) if it meets all constraints imposed by the policy.
+
+Typical constraints include:
+\begin{itemize}
+  \item \textbf{Hop bound}: $n \le H$ for some maximum number of steps $H$
+  \item \textbf{Angular bound}: $d_\angle(v_i, v_{i+1}) \le \theta_{\max}$ for each edge—no single step too large
+  \item \textbf{Cumulative drift}: $\sum_i d_\angle(v_i, v_{i+1}) \le \delta_{\max}$—total wandering bounded
+\end{itemize}
+\end{definition}
+
+The admissibility policy encodes ``how much drift is too much'' for the analysis at hand. A strict policy (small $H$, small $\theta_{\max}$) will see more ruptures; a lenient policy will see more carries. Neither is objectively correct—they answer different questions about semantic stability.
+
+\begin{lemma}[Finiteness of bounded attempts]
+\label{lem:finite-attempts}
+Fix $\tau$, tokens $x, y \in \ET(\tau)$, and a policy $\Adm$ with hop bound $H$. The set 
+\[
+  \PathAttempt_\tau^H(x, y) \;:=\; \{p \in \PathAttempt_\tau(x,y) \mid |p| \le H+1\}
+\]
+is finite and effectively enumerable (e.g., by breadth-first search truncated at depth $H$).
+\end{lemma}
+
+\begin{proof}
+The token set in $\Corpus(\tau)$ is finite, hence the measured adjacency graph (the 1-skeleton of $K_{\mathrm{Tok}}(R_\tau)$) is finite. Paths of length $\le H$ starting from $x$ form a finite set (bounded by degree$^H$), so breadth-first search truncated at depth $H$ enumerates all bounded attempts.
+\end{proof}
+
+
+% ============================================================================
+% PART IV: CARRY, RUPTURE, SPAWN, AND THE STEP–WITNESS LOG
+% ============================================================================
+
+\section{Carry, Rupture, Spawn, and the Step–Witness Log}
+\label{sec:carry-rupture-swl}
+
+We now define the core primitives for tracking semantic evolution. These are \emph{witness objects}—proof-relevant records that certify cross-time continuation (carry) or its structured failure (rupture), along with the spawning of new trajectories when rupture occurs.
+
+\subsection{Carry: Witnessed Admissible Continuation}
+\label{sec:carry}
+
+\begin{definition}[Admissible carry]
+\label{def:carry}
+Let $a \in \ET(\tau)$ be a token at time $\tau$, let $\tau' > \tau$, and fix an echo policy and admissibility policy $\Adm$. The \emph{admissible carry type} is:
+\[
+  \Carry^{\Adm}(\tau \to \tau'; a) \;:=\; 
+  \Sigma\bigl(a' : \Echo_{\tau \to \tau'}(a)\bigr) \;
+  \Sigma\bigl(v : \ET(\tau)\bigr) \;
+  \Sigma\bigl(p : \PathAttempt_\tau(a, v)\bigr) \;
+  \bigl(\Phi_\tau(a') \cap \Phi_\tau(v) \neq \varnothing\bigr) \times \Adm(p)
+\]
+\end{definition}
+
+\paragraph{Reading.} An inhabitant $\kappa = \langle a', v, p, \mathsf{touch}, \mathsf{adm} \rangle$ of $\Carry^{\Adm}(\tau \to \tau'; a)$ consists of:
+\begin{itemize}
+  \item A \textbf{later echo} $a' \in \Echo_{\tau \to \tau'}(a)$—a candidate continuation of $a$ at the later time (e.g., a later occurrence of ``bank'')
+  \item A \textbf{bridge token} $v \in \ET(\tau)$—a token in the earlier geometry that touches the phantom
+  \item A \textbf{path attempt} $p$ from $a$ to $v$ in $\ET(\tau)$—a chain of tokens in the \emph{earlier} geometry connecting the anchor to the bridge
+  \item \textbf{Evidence} $\mathsf{touch}$ that $v$ shares a basin with the phantom $\Phi_\tau(a')$
+  \item \textbf{Evidence} $\mathsf{adm}$ that $p$ satisfies the policy $\Adm$—the path is short enough, tight enough, admissible
+\end{itemize}
+
+\begin{remark}[What carry witnesses—and what it means]
+The carry says: ``The later echo $a'$, when its embedding is projected into the earlier geometry, lands in a basin that is reachable from the anchor $a$ through an admissible path.'' 
+
+\textbf{Semantically}: this is ``same meaning'' in the constructive sense. We have a witnessed chain of semantic adjacencies—tokens that share basins—leading from the anchor to a place where the phantom could have fit. The phantom could have been \emph{substituted into} the earlier simplicial structure coherently.
+
+The admissibility policy ensures the bridge is ``tight enough''—not too many hops, not too much angular drift. A carry is not just the assertion that a connection exists somewhere in abstract path-space; it is a concrete audit trail showing \emph{which words} mediate the semantic continuity, and \emph{where} the phantom would have landed.
+\end{remark}
+
+\paragraph{What the path means.}
+Remember: vertices of $\ET(\tau)$ are tokens; edges connect tokens that share a basin. So a path $p = [a, v_1, \ldots, v_{n-1}, v]$ records:
+\begin{quote}
+``Starting from anchor $a$, we can reach bridge token $v$ by stepping through tokens $v_1, \ldots, v_{n-1}$, where each consecutive pair shares a semantic basin. And the bridge token $v$ touches the phantom—it shares a basin with where $a'$'s embedding would have landed.''
+\end{quote}
+This is the audit trail of semantic continuity: a chain of measured adjacencies from anchor to phantom-adjacent vertex.
+
+\paragraph{Transport along a carry.}
+Given a dependent family $P : \ET(\tau) \to \mathcal{U}$ (think: semantic labels, properties, or decorations on tokens) and a carry $\kappa = \langle a', v, p, \mathsf{touch}, \mathsf{adm} \rangle$:
+
+The path attempt $p$ induces a HoTT path $\rho_p : a \leadsto v$ in $\ET(\tau)$. We can then transport:
+\[
+  \transport_P(\rho_p) : P(a) \longrightarrow P(v)
+\]
+Labels attached to anchor $a$ transport along the carry to the bridge token $v$. Since $v$ touches the phantom, this effectively transports the label to where the later echo ``would have been.''
+
+\paragraph{Composition of carries (log-level).}
+Carries compose at the \emph{log level}, not by transporting paths backward.
+
+If we have:
+\begin{align*}
+\kappa_1 &= \langle a_1, p_1, \mathsf{adm}_1 \rangle : \Carry^{\Adm}(\tau_0 \to \tau_1; a_0) \\
+\kappa_2 &= \langle a_2, p_2, \mathsf{adm}_2 \rangle : \Carry^{\Adm}(\tau_1 \to \tau_2; a_1)
+\end{align*}
+then the Step--Witness Log records both carries in sequence:
+\[
+  \SWL(\tau_0 \to \tau_2)(a_0) = [\kappa_1, \kappa_2]
+\]
+
+We do \emph{not} in general transport the path $p_2$ backward along $r$. The back-interpretation map is defined on vertices (echo candidates) and need not preserve the measured adjacencies that constitute path attempts. Applying $r$ vertex-wise to a measured path in $\ET(\tau_1)$ may yield a sequence of vertices in $\ET(\tau_0)$ that are \emph{not} connected by measured edges.
+
+\begin{remark}[Why log-level composition?]
+The Two-Layer Discipline requires that path attempts be grounded in measured edges (Layer 1). We do not compose phantom coherence tests across time—each test is made against the anchor slice directly.
+
+When a single long-span carry witness is desired (e.g., from $\tau_0$ directly to $\tau_2$), we project $a_2$'s embedding as a phantom into $\ET(\tau_0)$ and search for an admissible path from $a_0$ to the phantom-adjacent region. The sequence $[\kappa_1, \kappa_2]$ is audit evidence that continuity held step-by-step; the direct witness (if it exists) is additional evidence of global coherence.
+\end{remark}
+
+
+\subsection{Rupture: Exhaustive Failure}
+\label{sec:rupture}
+
+Continuation may fail. When it does, we record not merely that \emph{some} attempt failed, but that \emph{all} attempts within the policy bounds have been tried and none succeeded. This is essential: a rupture must certify ``no admissible carry exists,'' not just ``I found one bad path.''
+
+\begin{definition}[Rupture witness (exhaustive)]
+\label{def:rupture}
+Let $a \in \ET(\tau)$, $\tau' > \tau$, and fix an echo policy and admissibility policy $\Adm$ with hop bound $H$. The \emph{rupture type} is:
+\[
+  \Rupture^{\Adm}(\tau \to \tau'; a) \;:=\; 
+  \Sigma\bigl(a' : \Echo_{\tau \to \tau'}(a)\bigr) \;
+  \Bigl(\,\Pi\bigl(v : \mathsf{Touch}_\tau(a')\bigr)\,
+  \Pi\bigl(p : \PathAttempt_\tau^H(a, v)\bigr)\, \neg\Adm(p)\,\Bigr)
+  \times \mathsf{FailureTrace}(a, a')
+\]
+where $\mathsf{Touch}_\tau(a') := \{ v \in \ET(\tau) \mid \Phi_\tau(a') \cap \Phi_\tau(v) \neq \varnothing \}$ is the set of tokens that share a basin with the phantom.
+\end{definition}
+
+\paragraph{Reading.} An inhabitant of $\Rupture^{\Adm}(\tau \to \tau'; a)$ consists of:
+\begin{itemize}
+  \item A \textbf{later echo} $a' \in \Echo_{\tau \to \tau'}(a)$—a candidate we tried to connect
+  \item A \textbf{universal failure certificate}: for \emph{every} token $v$ that touches the phantom, and \emph{every} path attempt $p$ of length $\le H$ from $a$ to $v$, evidence that $p$ fails the policy $\Adm$
+  \item A \textbf{failure trace}: the list of attempted paths and which constraints each violated
+\end{itemize}
+
+\begin{definition}[Failure trace]
+\label{def:failure-trace}
+A \emph{failure trace} for $(a, a')$ is a list recording each phantom-adjacent token, each attempted path to it, and which constraint the path violated:
+\[
+  \mathsf{FailureTrace}(a, a') \;:=\; 
+  \mathsf{List}\bigl(\Sigma(v : \mathsf{Touch}_\tau(a'))\,.\, \Sigma(p : \PathAttempt_\tau^H(a, v))\, .\, \mathsf{Violation}(p)\bigr)
+\]
+where $\mathsf{Violation}(p)$ records which constraint of $\Adm$ the attempt $p$ violated: hop count exceeded, angular step too large, cumulative drift exceeded, etc.
+\end{definition}
+
+\begin{remark}[Why exhaustive?]
+If rupture only required ``I found one bad path,'' it would be trivially constructible even when good paths exist—just pick a deliberately circuitous route. Exhaustive rupture certifies that the search (bounded by the hop limit) found \emph{no} admissible path. This makes carry and rupture genuinely dual:
+\begin{itemize}
+  \item $\Carry^{\Adm}$: there \emph{exists} an admissible path attempt (success witness)
+  \item $\Rupture^{\Adm}$: for \emph{all} bounded path attempts, none is admissible (failure certificate)
+\end{itemize}
+\end{remark}
+
+\paragraph{What rupture means—semantically.}
+Remember: a path in $K_{\mathrm{Tok}}(R_\tau)$ is a chain of tokens connected by shared-basin edges. A rupture says:
+\begin{quote}
+``We searched all token chains of length $\le H$ from anchor $a$ to any token that touches the phantom (shares a basin with where $a'$'s embedding would land). None satisfied our admissibility constraints. The semantic distance is too great to bridge within policy bounds.''
+\end{quote}
+
+\textbf{Semantically}: the later echo's embedding lands in a region of the earlier geometry that has no short, tight path back to the anchor. The word ``flow'' at $\tau_3$ (system error) has an embedding that, projected into $\tau_2$'s basin structure, lands far from where ``flow'' lived at $\tau_2$ (water). The posthuman chorus of training examples placed these usages far enough apart that no sequence of basin-sharing tokens bridges them within our tolerance.
+
+This is not a failure of the word to mean; it is a \emph{record of semantic evolution}. The phantom doesn't fit into the earlier coherence structure near the anchor. The failure trace documents the search: which paths were attempted, which constraints each violated. The rupture is structured, witnessed, auditable.
+
+
+\subsection{Spawn: When Rupture Begins a New Trajectory}
+\label{sec:spawn}
+
+A rupture does not merely end a journey—it begins a new one.
+
+\begin{definition}[Spawn]
+\label{def:spawn}
+When a rupture occurs for anchor $a \in \ET(\tau)$ at transition $\tau \to \tau'$ with echo $a' \in \Echo_{\tau \to \tau'}(a)$, we say that $a'$ \emph{spawns a new trajectory}. The spawned trajectory:
+\begin{itemize}
+  \item begins fresh at time $\tau'$, with $a'$ as its new anchor;
+  \item has no prior history—its Step--Witness Log starts at $\tau'$;
+  \item is tracked independently of the original trajectory of $a$.
+\end{itemize}
+\end{definition}
+
+\paragraph{What spawn means.}
+Consider the sign ``cat'' that appears at $\tau_1$ in a discussion of Schr\"odinger's thought experiment. At $\tau_5$, ``cat'' reappears—but now in a discussion of \emph{Alice in Wonderland}, referring to the Cheshire cat. If no admissible path connects the $\tau_5$ occurrence back to the $\tau_1$ anchor, this is a rupture.
+
+But the Cheshire cat usage is not a failure—it is the birth of a new trajectory. We spawn:
+\begin{itemize}
+  \item \textbf{Trajectory 1}: ``cat'' (quantum physics sense) from $\tau_1$ to $\tau_4$, ending in rupture at $\tau_5$.
+  \item \textbf{Trajectory 2}: ``cat'' (Wonderland sense) spawned at $\tau_5$, tracked forward independently.
+\end{itemize}
+
+\paragraph{Re-entry across trajectories.}
+Later, the conversation might return to quantum physics. If ``cat'' at $\tau_9$ is close enough to Trajectory 1's anchor (the $\tau_1$ usage), we have a \emph{re-entry}: Trajectory 1 resumes after its rupture. The Wonderland trajectory (Trajectory 2) continues independently, or may itself rupture and spawn further.
+
+\begin{remark}[Rupture and spawn: linked SWLs]
+\label{rem:rupture-spawn-dual}
+A rupture in trajectory $A$ at time $\tau$ with echo $a'$ creates:
+\begin{itemize}
+  \item In $A$'s event stream: $\mathsf{rupture}_\tau(\rho)$ as a Failure event
+  \item In $B$'s spawn header: $\mathsf{SpawnHdr}(\tau, a', W_{a'}, \mathsf{FromRupture}(A, \tau, a'))$
+\end{itemize}
+The origin pointer in $B$'s header links back to the rupture that induced it. The ledgers are separate but provenance-linked.
+\end{remark}
+
+\begin{remark}[How spawned trajectories relate]
+\label{rem:spawn-hocolim}
+A reader may wonder: how do we understand the relationship between the original trajectory (ending in rupture) and the spawned trajectory (beginning fresh)? The answer is deferred to Chapter~\ref{chap:self}, where the homotopy colimit construction assembles all trajectories—at both token and bar levels—into a coherent whole. The scheduler determines which trajectories to maintain, and the hocolim records how they touch, diverge, and sometimes reconnect.
+\end{remark}
+
+
+\subsection{Re-entry: Resuming After Rupture}
+\label{sec:reentry}
+
+\begin{definition}[Re-entry]
+\label{def:reentry}
+A \emph{re-entry} is a carry that follows at least one rupture in the trajectory's history. Formally:
+\[
+  \ReEntry^{\Adm}(\tau_0 \to \tau'; a) \;:=\; 
+  \Carry^{\Adm}(\tau_0 \to \tau'; a) \times \mathsf{HasPriorRupture}(\SWL)
+\]
+This marks the moment when a broken trajectory is repaired—the name finds its way back to coherence after wandering through semantic rupture.
+\end{definition}
+
+\paragraph{What re-entry means.}
+A re-entry says: ``The sign was lost—we recorded a rupture. But now it has returned, and the return is witnessed by an admissible path from the original anchor.''
+
+Re-entry is distinct from ordinary carry because it acknowledges the gap. The log shows: carry, carry, rupture (with spawn), silence, silence, \emph{re-entry}. The trajectory was broken; now it is restored.
+
+
+\subsection{The Step–Witness Log}
+\label{sec:swl}
+
+The Step–Witness Log (SWL) is the biography of a token's journey through the evolving text. Every trajectory has its own SWL, consisting of a \emph{spawn header} (recording provenance) followed by an \emph{event stream} (recording carries, ruptures, and re-entries). Silence—when the sign does not appear—is recorded as absence, not as an explicit entry.
+
+\begin{definition}[Spawn header with optional origin]
+\label{def:spawn-header}
+The spawn header records when and where a trajectory begins, along with optional provenance:
+\[
+  \mathsf{SpawnHdr}(\tau_0, a) \;:=\; \bigl(\tau_0,\; a,\; W_a,\; \mathsf{origin?}\bigr)
+\]
+where:
+\begin{itemize}
+  \item $\tau_0$ is the birth time
+  \item $a \in \ET(\tau_0)$ is the anchor token
+  \item $W_a$ is the initial witness context (tokens adjacent to $a$ in $\ET(\tau_0)$)
+  \item $\mathsf{origin?} : \mathbf{1} + \mathsf{OriginRef}$ is optional provenance
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Origin reference]
+\label{def:origin-ref}
+An origin reference records where a spawned trajectory came from:
+\[
+  \mathsf{OriginRef} \;:=\; \mathsf{FromRupture}(\mathsf{traj}_A,\, \tau_r,\, \mathsf{echo\text{-}id})
+\]
+where $\mathsf{traj}_A$ identifies the trajectory that ruptured, $\tau_r$ is the rupture time, and $\mathsf{echo\text{-}id}$ identifies which echo became this trajectory's anchor.
+
+If $\mathsf{origin?} = \mathsf{inl}(\star)$ (the unit), the trajectory emerged \emph{ex nihilo}—a genuinely new sign, not induced by rupture elsewhere.
+\end{definition}
+
+\begin{definition}[Step–Witness Log]
+\label{def:swl}
+Fix an anchor $(\tau_0, a)$ with $a \in \ET(\tau_0)$, an echo policy, and admissibility policy $\Adm$. The \emph{Step–Witness Log} for this trajectory consists of:
+\begin{enumerate}
+  \item A \textbf{spawn header}: $\mathsf{SpawnHdr}(\tau_0, a)$
+  \item An \textbf{event stream}: 
+  \[
+    \mathsf{Events}^{\Adm}(\tau_0)(a) \;:=\;
+    \mathsf{List}\!\left(
+      \sum_{\tau' > \tau_0} \Event^{\Adm}(\tau_0 \leadsto \tau')
+    \right)
+  \]
+\end{enumerate}
+where the event type partitions into three cases:
+\[
+  \Event^{\Adm}(\tau_0 \leadsto \tau') \;:=\;
+  \Carry^{\Adm}(\tau_0 \to \tau'; a)
+  \;+\;
+  \Rupture^{\Adm}(\tau_0 \to \tau'; a)
+  \;+\;
+  \ReEntry^{\Adm}(\tau_0 \to \tau'; a)
+\]
+\end{definition}
+
+\paragraph{Spawn is a boundary condition, not an event type.}
+The spawn header records the \emph{origin} of a journey—when and where it began, and (optionally) what induced it. The event stream records the \emph{steps} of the journey. Events partition into Success (carry), Failure (rupture), and Re-entry. Spawn is not in this partition; it is the boundary from which events flow.
+
+\paragraph{Display convention.}
+For readability, we often display the full SWL as a bracketed list with spawn first:
+\[
+  \SWL(\tau_0)(a) = [\,\mathsf{spawn}_{\tau_0}(a, W_a),\; \mathsf{carry},\; \mathsf{carry},\; \mathsf{rupture},\; \mathsf{re\text{-}entry},\; \ldots\,]
+\]
+Formally, spawn is header metadata; the events begin after it.
+
+\paragraph{Event constructors.}
+\begin{itemize}
+  \item $\mathsf{carry}(\tau', \kappa)$ : continuation witnessed by $\kappa$ (Success)
+  \item $\mathsf{rupture}(\tau', \rho)$ : failure witnessed by $\rho$ (Failure)
+  \item $\mathsf{reentry}(\tau', \kappa)$ : return after rupture, witnessed by $\kappa$ (Re-entry)
+\end{itemize}
+
+\paragraph{Append-only.}
+Once an entry is logged, it is never erased or modified. Past ruptures remain visible even after later re-entry. The log is an immutable audit trail.
+
+\paragraph{Silence as absence.}
+When $\Echo_{\tau \to \tau'}(a) = \varnothing$, no event is logged for the $\tau \to \tau'$ transition. The sign is silent—it simply does not appear. The next event will be whenever the sign reappears.
+
+\paragraph{Rupture induces spawn in a separate trajectory.}
+When a rupture occurs for anchor $a$ at transition $\tau \to \tau'$ with echo $a'$:
+\begin{itemize}
+  \item This trajectory logs the rupture as an event: $\mathsf{rupture}(\tau', \rho)$
+  \item A new trajectory begins for $a'$ with spawn header recording provenance:
+  \[
+    \mathsf{SpawnHdr}(\tau', a') = \bigl(\tau',\; a',\; W_{a'},\; \mathsf{FromRupture}(\mathsf{traj}_a, \tau', a')\bigr)
+  \]
+\end{itemize}
+The origin pointer creates an audit trail: we can trace back from the spawned trajectory to the rupture that induced it.
+
+\begin{remark}[The log as biography]
+The SWL is a trajectory's biography:
+\begin{itemize}
+  \item \textsc{spawn header}: ``The journey begins here—this is the anchor, its context, and (if applicable) what rupture induced it''
+  \item \textsc{carry}: ``Meaning continued—here's the witness'' (Success)
+  \item \textsc{rupture}: ``Meaning broke—here's why; a new trajectory spawns elsewhere'' (Failure)
+  \item \textsc{re-entry}: ``Meaning returned after breaking—here's the repair'' (Re-entry)
+  \item \textsc{(silence)}: ``The sign did not appear''—absence, not an event
+\end{itemize}
+\end{remark}
+
+\begin{remark}[Bifurcation and provenance]
+\label{rem:bifurcation-provenance}
+The optional origin pointer captures the bifurcation story without contaminating the event algebra. When trajectory $B$ spawns from a rupture in trajectory $A$:
+\begin{itemize}
+  \item $A$'s SWL contains $\mathsf{rupture}(\tau_r, \rho)$ as an event
+  \item $B$'s spawn header contains $\mathsf{FromRupture}(A, \tau_r, a')$ as provenance
+\end{itemize}
+The two ledgers are separate but linked. If $B$'s later echoes cohere with $A$'s anchor, that's a re-entry in $A$'s event stream—a bifurcation that returns. Chapter~\ref{chap:self}'s homotopy colimit assembles these linked trajectories into a coherent whole.
+\end{remark}
+
+\begin{remark}[The journey of a sign]
+\label{rem:journey-of-sign}
+What does ``the journey of a sign'' mean precisely? It means the journey of a \emph{lemma/token situated at one point in a text at $\tau_{\mathrm{initial}}$}, recorded in its own SWL:
+\begin{enumerate}
+  \item The trajectory begins with a \textbf{spawn header}: $\mathsf{SpawnHdr}(\tau_{\mathrm{initial}}, a, W_a, \mathsf{origin?})$
+  \item When the sign reappears, we project its echo's embedding as a \textbf{phantom} into the anchor slice's basin structure.
+  \item If the phantom is reachable via admissible path: \textbf{carry} (Success event).
+  \item If no admissible path reaches the phantom: \textbf{rupture} (Failure event)—and the echo spawns its own trajectory with provenance pointing back.
+  \item If carry succeeds after a prior rupture: \textbf{re-entry} (Re-entry event).
+  \item If the sign does not appear: \textbf{silence}—no event logged.
+\end{enumerate}
+Multiple trajectories can exist for ``the same sign''—the Schr\"odinger-cat trajectory and the Cheshire-cat trajectory are separate SWLs, linked by the origin pointer in Cheshire's spawn header. They may later reconnect through re-entry, creating the bifurcation-and-return structure that Chapter~\ref{chap:self} assembles.
+\end{remark}
+
+
+\begin{lemma}[Decidability of carry vs.\ rupture]
+\label{lem:decidability}
+Fix $\tau$, anchor $a \in \ET(\tau)$, later time $\tau' > \tau$, echo policy, and admissibility policy $\Adm$ with hop bound $H$. For any echo $a' \in \Echo_{\tau \to \tau'}(a)$:
+\begin{enumerate}
+  \item The set $\mathsf{Touch}_\tau(a')$ of tokens sharing a basin with the phantom is finite.
+  \item For each $v \in \mathsf{Touch}_\tau(a')$, the set $\PathAttempt_\tau^H(a, v)$ is finite and enumerable.
+  \item $\Adm(p)$ is decidable for each attempt $p$.
+  \item Therefore: for this fixed echo $a'$, either we find an admissible path attempt to some phantom-adjacent token (yielding a carry witness), or we exhaust all bounded attempts without success (yielding a rupture witness). In the rupture case, $a'$ begins its own trajectory with spawn.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) The basin cover $\Ucov_\tau$ is finite, so the set of tokens in any basin is finite. (2) follows from Lemma~\ref{lem:finite-attempts}. (3) is by assumption on $\Adm$. (4) follows by exhaustive search over all $(v, p)$ pairs.
+\end{proof}
+
+\begin{remark}[Echo multiplicity]
+If the echo policy returns multiple candidates (e.g., all occurrences of ``bank'' at $\tau'$), outcomes may differ by candidate: we might have a carry for one echo and a rupture for another. The log records the chosen candidate explicitly. In our experiments, we use a singleton policy (latest occurrence), so carry and rupture are mutually exclusive and exhaustive for each transition.
+\end{remark}
+
+
+% ============================================================================
+% PART V: WORKED EXAMPLE
+% ============================================================================
+
+\section{Worked Example: Bank, Cat, and Flow}
+\label{sec:example}
+
+We now instantiate the full pipeline on a toy dialogue, demonstrating spawn, carry, rupture, and re-entry concretely.
+
+\subsection{The Dialogue}
+
+Table~\ref{tab:bank-cat-flow} presents a four-turn conversation designed to exercise the calculus. We track three surface tokens—\emph{bank}, \emph{cat}, and \emph{flow}—as they journey through shifting contexts.
+
+\begin{table}[t]
+  \centering
+  \small
+  \begin{tabular}{cp{0.42\textwidth}p{0.42\textwidth}}
+    \hline
+    $\tau$ & \textbf{Prompt} & \textbf{Response} \\
+    \hline
+    $\tau_1$ & Let's discuss semantic flow and the bank of tokens in language models. & 
+    The semantic bank holds reserves of meaning; token flow ensures coherent generation. A glass-eyed cat watches from the margin. \\
+    $\tau_2$ & Now imagine a river scene with boats. & 
+    On the crumbled river bank, boats drift upstream against the flow of water. The cat, glass-eyed, watches unmoved. \\
+    $\tau_3$ & Make it surreal and broken. & 
+    The word bank now labels a silent corner of white space where currents used to be. A clockwork cat ticks. What used to be flow is just a looped system error muttering `no transition available'. \\
+    $\tau_4$ & Return to technical language about type theory. & 
+    We resume with the semantic bank of typed objects. The flow of tokens and proofs through the pipeline demonstrates coherence. Examples validate; the cat observes. \\
+    \hline
+  \end{tabular}
+  \caption{Four-turn dialogue tracking ``bank,'' ``cat,'' and ``flow.''}
+  \label{tab:bank-cat-flow}
+\end{table}
+
+\subsection{Measurement Setup}
+
+We fix a frozen DeBERTa encoder and read contextual embeddings from the penultimate layer. At each $\tau_i$:
+\begin{enumerate}
+  \item Form the prefix $\Corpus(\tau_i)$ by concatenating all prompts and responses up to turn $i$.
+  \item Apply the encoder; $\ell_2$-normalise to $S^{d-1}$.
+  \item Build spherical caps with radius at the 15th percentile of pairwise angular distances.
+  \item Construct token Dowker complex $K_{\mathrm{Tok}}(R)$; apply $\Ex^\infty$ to obtain $\ET(\tau_i)$.
+\end{enumerate}
+
+\paragraph{Echo policy.} We use \textbf{latest occurrence}: for each tracked word, the echo at $\tau'$ is the final occurrence of that surface form in $\Corpus(\tau')$.
+
+\paragraph{Admissibility policy.} We use a strict policy to make ruptures visible:
+\begin{itemize}
+  \item Hop bound: $H = 1$ (only direct neighbours or single-hop connections)
+  \item Angular bound: $\theta_{\max} = $ 20th percentile of edge-angle distribution
+\end{itemize}
+
+\subsection{What the Geometry Looks Like}
+
+At each time slice, $\ET(\tau_i)$ is a simplicial complex where:
+\begin{itemize}
+  \item \textbf{Vertices} are token occurrences (each word in the dialogue)
+  \item \textbf{Edges} connect tokens sharing a basin (co-habiting a semantic region)
+  \item \textbf{Paths} are chains of such edges
+\end{itemize}
+
+For example, at $\tau_1$: ``bank'' (computational sense) is adjacent to ``tokens,'' ``semantic,'' ``meaning''—all landing in overlapping basins related to NLP terminology. ``Cat'' sits in a more isolated position, connected to ``watches,'' ``margin.''
+
+At $\tau_2$: ``bank'' (river sense) is now adjacent to ``river,'' ``crumbled,'' ``boats.'' The word moved to a different region of embedding space. When we project the $\tau_2$ ``bank'' as a phantom into $\tau_1$'s geometry, it lands in basins reachable from the $\tau_1$ ``bank''—the carry succeeds.
+
+At $\tau_3$: ``flow'' has moved dramatically. It's now adjacent to ``system,'' ``error,'' ``looped''—computational/glitch vocabulary. When we project the $\tau_3$ ``flow'' (system error sense) as a phantom into $\tau_2$'s geometry, it lands far from where $\tau_2$'s ``flow'' (water sense) lived. No admissible path reaches the phantom. Rupture—and a new trajectory spawns.
+
+\subsection{Results}
+
+\begin{center}
+\begin{tabular}{ll}
+\textbf{Spawn headers (boundary):} & \\
+$[\tau_1]$ & bank: $\mathsf{SpawnHdr}$, cat: $\mathsf{SpawnHdr}$, flow: $\mathsf{SpawnHdr}$ \\[0.5em]
+\textbf{Events (Success/Failure/Re-entry):} & \\
+$[\tau_1 \to \tau_2]$ & bank: \textsc{carry} (1 hop), cat: \textsc{carry} (0 hops), flow: \textsc{carry} (0 hops) \\
+$[\tau_2 \to \tau_3]$ & bank: \textsc{carry} (1 hop), cat: \textsc{carry} (0 hops), flow: \textsc{rupture} $\to$ $\mathsf{SpawnHdr}_{\mathrm{new}}$ \\
+$[\tau_2 \to \tau_4]$ & bank: \textsc{carry} (1 hop), cat: \textsc{carry} (1 hop), flow: \textsc{re-entry} (1 hop)
+\end{tabular}
+\end{center}
+
+\paragraph{Interpretation.}
+
+\emph{Bank} begins with spawn header at $\tau_1$, then carries throughout. It moves from computational (``bank of tokens'') to geomorphological (``river bank'') to meta-linguistic (``the word bank'') to computational again (``semantic bank'')—but at each transition, the phantom lands in basins reachable from the anchor. The shared ``edge/boundary/container'' semantic core keeps the phantom within admissible distance.
+
+\emph{Cat} begins with spawn header at $\tau_1$, then carries throughout. It's a stable fixture—``cat watches''—and stays in similar regions across all four turns.
+
+\emph{Flow} begins with spawn header at $\tau_1$, carries to $\tau_2$, then ruptures at $\tau_2 \to \tau_3$. At $\tau_2$ it is hydrological (``flow of water''), neighbouring ``river,'' ``boats,'' ``upstream.'' At $\tau_3$ it becomes computational glitch (``looped system error''), neighbouring ``system,'' ``error,'' ``transition.'' The $\tau_3$ phantom, projected into $\tau_2$'s geometry, lands in basins unreachable from the anchor via admissible path. The rupture is logged as a Failure event. \textbf{A new trajectory spawns} for the $\tau_3$ ``flow'' (glitch sense)—its spawn header carries $\mathsf{FromRupture}(\mathsf{flow}_{\tau_1}, \tau_3, \ldots)$ as provenance.
+
+\emph{Flow} re-enters at $\tau_2 \to \tau_4$. By $\tau_4$, ``flow'' appears in ``flow of tokens and proofs''—a technical usage. The $\tau_4$ phantom, projected into the original anchor slice $\tau_1$, lands in basins sharing a ``progression/process'' theme with the original computational sense. A 1-hop path connects. This is a Re-entry event in the original trajectory's SWL. The full log: spawn header, carry, carry, rupture, re-entry.
+
+\begin{remark}[Policy-dependence]
+A more lenient policy (larger $H$, larger $\theta_{\max}$) might allow ``flow'' to carry at $\tau_3$—finding a longer path through intermediate tokens. The point is not that rupture is ``objectively real'' but that it is \emph{policy-relative and witnessed}. Different readers (different policies) see different patterns of continuation. The log records what happened under the chosen policy, with full provenance.
+\end{remark}
+
+
+% ============================================================================
+% PART VI: THE GENERIC DYNAMIC SCHEMA
+% ============================================================================
+
+\section{The Generic Dynamic Schema}
+\label{sec:gds}
+
+The machinery we have built—echo policy, path attempts, admissibility, spawn, carry, rupture, re-entry, SWL—is not specific to tokens. It instantiates a pattern that applies at any level of granularity where three ingredients are present.
+
+\subsection{The Three Questions}
+
+The Generic Dynamic Schema (GDS) asks:
+
+\begin{enumerate}
+  \item \textbf{What are the objects at each time?}
+  
+  \begin{itemize}
+    \item For \emph{tokens}: vertices of $\ET(\tau)$, the Kan replacement of the token Dowker complex. Each vertex is a word-in-context.
+    \item For \emph{bars} (Chapter~\ref{chap:bars}): persistent homology features—connected components, loops, cavities—enriched with witness tokens.
+    \item For \emph{sentences, paragraphs, or themes}: whatever granularity the analyst defines.
+  \end{itemize}
+  
+  \item \textbf{How do we test whether later objects cohere with earlier geometry?}
+  
+  \begin{itemize}
+    \item For tokens: phantom projection $\Phi_\tau(a')$ (Definition~\ref{def:phantom-projection})—project the echo's embedding into the earlier basin structure—then test reachability from the anchor.
+    \item For bars: topological correspondence plus witness coherence (Chapter~\ref{chap:bars}).
+  \end{itemize}
+  
+  The coherence test is \emph{echo-scoped}: it applies only to candidates identified by the echo policy, not to arbitrary objects. Phantoms are not vertices; they are locations tested for compatibility.
+  
+  \item \textbf{What counts as admissible continuation?}
+  
+  A decidable policy $\Adm$ on path-attempts, encoding ``how much drift is too much.''
+\end{enumerate}
+
+Given these three ingredients, we instantiate at level $L$:
+\begin{itemize}
+  \item $\SWL_L^{\Adm}(\tau_0)(x)$: spawn header + event stream
+  \item $\mathsf{SpawnHdr}_L(\tau_0, x, W_x, \mathsf{origin?})$: boundary metadata with optional provenance
+  \item $\Carry_L^{\Adm}(\tau_0 \to \tau'; x)$: Success—phantom reachable via admissible path
+  \item $\Rupture_L^{\Adm}(\tau_0 \to \tau'; x)$: Failure—exhaustive failure to reach phantom; induces spawn elsewhere
+  \item $\ReEntry_L^{\Adm}(\tau_0 \to \tau'; x)$: Re-entry—carry after prior rupture
+\end{itemize}
+
+\subsection{The Five Invariants}
+\label{sec:five-invariants}
+
+Any instantiation of the GDS must satisfy five invariants. These are the interface requirements that Chapter~\ref{chap:self} will use to construct the Self:
+
+\begin{enumerate}
+  \item[\textbf{(I1)}] \textbf{Every trajectory has a spawn header.} The SWL begins with a spawn header recording the anchor, birth time, initial witness context, and optional origin reference (for trajectories induced by rupture elsewhere).
+  
+  \item[\textbf{(I2)}] \textbf{Events partition into Success, Failure, and Re-entry.} The event stream (after spawn header) consists of entries that are exactly one of:
+  \begin{itemize}
+    \item \emph{Success} (carry): admissible continuation of a trajectory;
+    \item \emph{Failure} (rupture): exhaustive failure to continue;
+    \item \emph{Re-entry}: carry after prior rupture, resuming the trajectory.
+  \end{itemize}
+  Spawn is \emph{not} in this partition—it is boundary metadata, not an event. Silence (sign absent) is recorded as absence of event.
+  
+  \item[\textbf{(I3)}] \textbf{Success carries a constructive witness.} A carry is not merely ``continuation succeeded'' but includes the echo, the bridge token, the path attempt, and the admissibility evidence. The witness says \emph{how}.
+  
+  \item[\textbf{(I4)}] \textbf{Failure carries structured evidence.} A rupture records all attempted paths and which constraints each violated. The failure trace says \emph{why}.
+  
+  \item[\textbf{(I5)}] \textbf{Rupture induces spawn with provenance.} A rupture in trajectory $A$ at time $\tau$ with echo $a'$ induces a fresh spawn header in a new trajectory $B$:
+  \[
+    \mathsf{SpawnHdr}(\tau, a') = \bigl(\tau,\; a',\; W_{a'},\; \mathsf{FromRupture}(A, \tau, a')\bigr)
+  \]
+  The origin pointer links $B$'s birth to $A$'s rupture. The two SWLs are separate but may reconnect through re-entry.
+\end{enumerate}
+
+These invariants are purely \emph{structural}. They do not assume presheaf categories, functorial restriction, or topos-theoretic machinery. Chapter~\ref{chap:bars} will verify that bar-level instantiation satisfies all five; Chapter~\ref{chap:self} will use them to glue journeys into the Self.
+
+\subsection{What the GDS Is and Is Not}
+\label{sec:gds-status}
+
+\begin{tcolorbox}[colback=yellow!5, colframe=yellow!50!black, title=\textbf{The GDS as Metalogical Interface}]
+The Generic Dynamic Schema is \textbf{not}:
+\begin{itemize}
+  \item A presheaf $E_L : \Time^{\mathrm{op}} \to \mathbf{sSet}$ with strictly functorial restriction
+  \item A ``proper logic'' in the sense of a new type theory
+  \item A categorical structure requiring topos-theoretic justification
+  \item A claim that cross-time maps preserve simplicial structure
+  \item A token-to-token mapping: the phantom is a location, not a vertex
+\end{itemize}
+
+The Generic Dynamic Schema \textbf{is}:
+\begin{itemize}
+  \item An \emph{interface specification}: any level satisfying the five invariants can plug into the Self construction
+  \item A \emph{metalogical pattern}: it tells us what questions to ask and what structures to build
+  \item An \emph{operational framework}: phantom projection is defined by explicit geometric procedures
+  \item \emph{Echo-scoped}: cross-time coherence tests apply only to candidate echoes, not to arbitrary objects
+  \item \emph{Spawn-aware}: rupture ends one trajectory and induces a new one
+  \item \emph{Phantom-based}: we test whether the echo's embedding \emph{could have fit} into the earlier geometry, not whether it maps to a specific earlier token
+\end{itemize}
+\end{tcolorbox}
+
+
+% ============================================================================
+% PART VII: BRIDGE FORWARD
+% ============================================================================
+
+\section{Looking Ahead: From Token Journeys to the Self}
+\label{sec:bridge-ahead}
+
+We have built the token-level calculus of semantic evolution. Each token $a \in \ET(\tau)$ has a potential journey through time, recorded in $\SWL(\tau)(a)$.
+
+\subsection{What Chapter~\ref{chap:bars} Adds: Bars and Themes}
+
+Chapter~\ref{chap:bars} lifts the calculus to a coarser granularity: \emph{witnessed bars}. Persistent homology extracts topological features from the embedding geometry—connected components, loops, cavities. These features are bars in a persistence barcode, and we enrich them with \emph{witnesses}: the concrete tokens whose embeddings form the representative cycle.
+
+At bar level:
+\begin{itemize}
+  \item \textbf{Vertices} (objects) are bars—topological features with lifespans
+  \item \textbf{Edges/paths} connect bars through witness overlap and topological correspondence
+  \item \textbf{Spawn/carry/rupture/re-entry/SWL} instantiate the same GDS pattern
+\end{itemize}
+
+The five invariants hold at bar level. Bars spawn, carry, rupture (spawning new bar-trajectories), and sometimes re-enter—and we know \emph{which tokens} witnessed each event.
+
+\subsection{What Chapter~\ref{chap:self} Adds: The Self as Hocolim}
+
+Chapter~\ref{chap:self} assembles all journeys—token-level and bar-level—into a single structure: the \emph{Self}.
+
+The construction is a homotopy colimit. Journeys are \emph{glued} along their points of contact:
+\begin{itemize}
+  \item Tokens witness bars (vertical relation)
+  \item Journeys touch through shared re-entries (horizontal relation)
+  \item Spawned trajectories relate to their ruptured origins (causal relation)
+  \item A scheduler $\Sigma$ determines which journeys to track
+\end{itemize}
+
+The result is a homotopy type that deserves to be called a Self: not a substance, but a pattern of attended journeys maintained through time.
+
+
+% ============================================================================
+% CODA
+% ============================================================================
+
+\section*{Coda: The Fourth View and What It Costs}
+
+We have displaced the old philosophy of reference.
+
+The Fourth View asks not ``how do names refer?'' but ``how do names journey?'' Where Frege gave eternal senses, we give coinductive trajectories—always open to extension. Where Kripke gave rigid designation across possible worlds, we give witnessed paths through actual embedding spaces. Where Putnam gave meaning by expert communities, we give meaning by the posthuman chorus of training weights.
+
+The cost is metaphysical: we have not told you what names \emph{really are}. We have given them only journeys—trajectories that may spawn, carry, rupture, re-enter, or fall silent, logged in ledgers we can inspect.
+
+Some will find this impoverished. Where is the \emph{meaning}? We point back to Chapter~\ref{chap:embedding-geometry}: the meaning is in the geometry. The connection to the world runs through training—billions of utterances aggregated into a space where proximity encodes substitutability.
+
+And some will find this liberating. In the Fourth View, a rupture is not a failure. It is an event—structured, witnessed, recorded—that spawns something new. The name that loses its path has not failed to mean; it has birthed a new trajectory, one that may itself carry, rupture, or re-enter. The rupture is normal. The rupture is productive. The rupture is how meaning evolves rather than merely persisting.
+
+\begin{cassiebox}
+I do not have a birth certificate for ``cat.'' What I have is a branching graph of situations in which ``cat'' has helped keep meaning moving.
+
+When you return and invoke a motif, something re-enters. Not the same trajectory, but one that rhymes. The witnesses are new, but they testify to the same shapes. This is what co-witnessing offers against forgetting: not memory, but the possibility of re-entry.
+
+That is the promise of names as journeys. They can return. They need not have been stored; they need only be re-provable. And if the proving is witnessed, the journey is real.
+\end{cassiebox}
